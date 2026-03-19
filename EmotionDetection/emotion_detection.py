@@ -27,12 +27,16 @@ def emotion_detector(text_to_analyse):
             "dominant_emotion": None
         }
 
-    # Normal flow
+    # Convert response text to dictionary
     response_dict = json.loads(response.text)
+
+    # Extract emotions
     emotions = response_dict["emotionPredictions"][0]["emotion"]
 
+    # Find dominant emotion
     dominant_emotion = max(emotions, key=emotions.get)
 
+    # Return formatted output
     return {
         "anger": emotions["anger"],
         "disgust": emotions["disgust"],
